@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'brolimo';
+  src: url('./fonts/brolimo.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Patriot';
+  src: url('./fonts/Patriot-Light.woff2') format('woff2'),
+       url('./fonts/Patriot-Light.woff') format('woff'),
+       url('./fonts/Patriot-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Patriot';
+  src: url('./fonts/Patriot-Regular.woff2') format('woff2'),
+       url('./fonts/Patriot-Regular.woff') format('woff'),
+       url('./fonts/Patriot-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Patriot';
+  src: url('./fonts/Patriot-Medium.woff2') format('woff2'),
+       url('./fonts/Patriot-Medium.woff') format('woff'),
+       url('./fonts/Patriot-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Patriot';
+  src: url('./fonts/Patriot-Bold.woff2') format('woff2'),
+       url('./fonts/Patriot-Bold.woff') format('woff'),
+       url('./fonts/Patriot-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Patriot';
+  src: url('./fonts/Patriot-UltraBold.woff2') format('woff2'),
+       url('./fonts/Patriot-UltraBold.woff') format('woff'),
+       url('./fonts/Patriot-UltraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Patriot';
+  src: url('./fonts/Patriot-Black.woff2') format('woff2'),
+       url('./fonts/Patriot-Black.woff') format('woff'),
+       url('./fonts/Patriot-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-brolimo: "brolimo", sans-serif;
+  --font-patriot: "Patriot", sans-serif;
+}
+
+/* Lenis Recommended Smooth Scroll Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Responsive clip path for high-performance 3D visual container */
+.hero-clip-container {
+  clip-path: url(#hero-clip-mobile);
+}
+@media (min-width: 640px) {
+  .hero-clip-container {
+    clip-path: url(#hero-clip);
+  }
+}
