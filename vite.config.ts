@@ -59,11 +59,16 @@ function prerenderPlugin() {
     <meta property="og:title" content="Vantra Logistics — Freight That Doesn't Wait" />
     <meta property="og:description" content="A concept logistics brand site by Efaz." />
     <meta property="article:author" content="https://miftahulislamefaz.xyz" />
+    <style>
+      .js-enabled #prerendered-fallback {
+        display: none !important;
+      }
+    </style>
   `;
 
   const prerenderedBody = `
     <div id="root">
-      <div class="min-h-[145vh] bg-[#0A0A0A] text-white font-sans flex flex-col overflow-x-hidden">
+      <div id="prerendered-fallback" class="min-h-[145vh] bg-[#0A0A0A] text-white font-sans flex flex-col overflow-x-hidden">
         
         <!-- Header/Navbar -->
         <header class="w-full py-6 px-6 lg:px-12 flex justify-between items-center bg-[#0A0A0A]/80 backdrop-blur-md">
