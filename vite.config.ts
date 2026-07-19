@@ -58,7 +58,18 @@ function prerenderPlugin() {
     <meta name="description" content="Vantra Logistics — a high-end conceptual freight and container logistics website, designed and developed by Efaz (miftahulislamefaz.xyz)." />
     <meta property="og:title" content="Vantra Logistics — Freight That Doesn't Wait" />
     <meta property="og:description" content="A concept logistics brand site by Efaz." />
+    <meta property="og:image" content="https://lh3.googleusercontent.com/d/1qH4wVZ-aIiRkgPS4btGEFZhqKFdD9xcL" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vantra-logistics.netlify.app" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vantra Logistics — Freight That Doesn't Wait" />
+    <meta name="twitter:description" content="A concept logistics brand site by Efaz." />
+    <meta name="twitter:image" content="https://lh3.googleusercontent.com/d/1qH4wVZ-aIiRkgPS4btGEFZhqKFdD9xcL" />
     <meta property="article:author" content="https://miftahulislamefaz.xyz" />
+    <link rel="icon" type="image/x-icon" href="https://lh3.googleusercontent.com/d/1zG3r5i5eEevD1NrYsRTvprRV__JaLgZC" />
+    <link rel="shortcut icon" href="https://lh3.googleusercontent.com/d/1zG3r5i5eEevD1NrYsRTvprRV__JaLgZC" />
     <style>
       .js-enabled #prerendered-fallback {
         display: none !important;
