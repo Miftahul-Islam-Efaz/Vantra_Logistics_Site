@@ -80,7 +80,7 @@ export default function App() {
       <TruckRevealSection />
 
       {/* Crawlable, elegantly designed brand description and credits */}
-      <AboutSection />
+      {/* <AboutSection /> */}
 
       {/* Premium links and copyrights Footer Section */}
       <FooterSection />

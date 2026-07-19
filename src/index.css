@@ -81,6 +81,18 @@ html.lenis body {
   height: auto;
 }
 
+/* Hide scrollbar globally for all modern browsers while maintaining scrollability */
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }

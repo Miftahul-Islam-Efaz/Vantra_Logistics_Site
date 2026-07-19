@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import BlurRevealText from './BlurRevealText';
 
 export default function FleetSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    setIsMobile(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   return (
     <section 
-      className="relative w-full overflow-hidden bg-[#020202] py-24 sm:py-32 lg:py-40 flex flex-col justify-between rounded-t-[40px] sm:rounded-t-[60px] md:rounded-t-[80px] bg-cover bg-no-repeat bg-[position:65%_center] md:bg-center"
+      className="relative w-full overflow-hidden bg-[#020202] py-24 sm:py-32 lg:py-40 flex flex-col justify-between rounded-t-[40px] sm:rounded-t-[60px] md:rounded-t-[80px] bg-cover bg-no-repeat bg-center"
       style={{
-        backgroundImage: `url('https://lh3.googleusercontent.com/d/1bPP5ZFDqZMsC_gU26J7fzVZhZ6u-IqDe')`,
+        backgroundImage: `url('${isMobile ? 'https://lh3.googleusercontent.com/d/1ZxuD2lTWJDPoCy8I5p7dZqBmEAL13Osl' : 'https://lh3.googleusercontent.com/d/1bPP5ZFDqZMsC_gU26J7fzVZhZ6u-IqDe'}')`,
       }}
       id="fleet-section"
     >

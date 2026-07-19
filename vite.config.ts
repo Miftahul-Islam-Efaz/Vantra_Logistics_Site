@@ -41,7 +41,7 @@ function prerenderPlugin() {
         },
         {
           "@type": "CreativeWork",
-          "@id": "https://vantra-logistics.example.com/#creativework",
+          "@id": "https://vantra-logistics.netlify.app/#creativework",
           "name": "Vantra Logistics — Concept Site",
           "author": { "@id": "https://miftahulislamefaz.xyz/#person" },
           "creator": { "@id": "https://miftahulislamefaz.xyz/#person" },
