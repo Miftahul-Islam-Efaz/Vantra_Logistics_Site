@@ -6,7 +6,7 @@ interface ContainerWireframeProps {
   delay?: number;
 }
 
-export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWireframeProps) {
+export default function ContainerWireframe({ type, delay = 0 }: ContainerWireframeProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
@@ -18,21 +18,51 @@ export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWiref
   const [ribsWipe, setRibsWipe] = useState(0); // 0 to 1
   const [blueprintOpacity, setBlueprintOpacity] = useState(1);
 
+  // Trigger state for looping
+  const [animationTrigger, setAnimationTrigger] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
   // Targets
   const targetLength = type === '20dc' ? 1.0 : 1.55;
   const targetHeight = type === '40hc' ? 1.15 : 1.0;
 
+  // Set up 4-second continuous interval loop once visible
   useEffect(() => {
     if (!isInView) return;
 
+    timerRef.current = setInterval(() => {
+      setAnimationTrigger((prev) => prev + 1);
+    }, 4000);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [isInView]);
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    // Reset states first to ensure clean animation cycle start
+    setLengthScale(0.4);
+    setHeightScale(0.3);
+    setBlueprintDraw(1);
+    setSolidWipe(0);
+    setRibsWipe(0);
+    setBlueprintOpacity(1);
+
     // Orchestrate high-end multi-stage professional animation timeline
     const controls: any[] = [];
+    
+    // Always trigger immediately without any staggered delay so all 3 cards start at the exact same moment
+    const activeDelay = 0;
 
     // Stage 1: Blueprint wireframe draw-in (0.0s - 0.7s)
     controls.push(
       animate(1, 0, {
         duration: 0.9,
-        delay: delay,
+        delay: activeDelay,
         ease: [0.16, 1, 0.3, 1], // easeOutExpo
         onUpdate: (latest) => setBlueprintDraw(latest),
       })
@@ -42,7 +72,7 @@ export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWiref
     controls.push(
       animate(0.4, targetLength, {
         duration: 1.1,
-        delay: delay + 0.25,
+        delay: activeDelay + 0.25,
         ease: [0.25, 1, 0.5, 1], // premium spring-like easeOutQuart
         onUpdate: (latest) => setLengthScale(latest),
       })
@@ -51,7 +81,7 @@ export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWiref
     controls.push(
       animate(0.3, targetHeight, {
         duration: 1.2,
-        delay: delay + 0.2,
+        delay: activeDelay + 0.2,
         ease: [0.25, 1, 0.5, 1],
         onUpdate: (latest) => setHeightScale(latest),
       })
@@ -61,7 +91,7 @@ export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWiref
     controls.push(
       animate(0, 1.3, {
         duration: 1.1,
-        delay: delay + 0.5,
+        delay: activeDelay + 0.5,
         ease: [0.33, 1, 0.68, 1],
         onUpdate: (latest) => setSolidWipe(latest),
       })
@@ -71,7 +101,7 @@ export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWiref
     controls.push(
       animate(0, 1.3, {
         duration: 1.0,
-        delay: delay + 0.7,
+        delay: activeDelay + 0.7,
         ease: [0.33, 1, 0.68, 1],
         onUpdate: (latest) => setRibsWipe(latest),
       })
@@ -81,7 +111,7 @@ export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWiref
     controls.push(
       animate(1, 0, {
         duration: 0.7,
-        delay: delay + 0.9,
+        delay: activeDelay + 0.9,
         ease: 'easeInOut',
         onUpdate: (latest) => setBlueprintOpacity(latest),
       })
@@ -90,7 +120,7 @@ export default function ContainerWireframe({ type, delay = 0.1 }: ContainerWiref
     return () => {
       controls.forEach((c) => c.stop());
     };
-  }, [isInView, targetLength, targetHeight, delay]);
+  }, [isInView, targetLength, targetHeight, animationTrigger]);
 
   // Coordinate math for 3D parallel isometric projection
   const L = lengthScale;
